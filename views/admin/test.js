@@ -152,7 +152,11 @@ $(function() {
 
 		// Redirect, because resolve function has a lower priority than redirect
 		redirect_promise: function(result_display) {
-			document.getElementById('redirect_test').contentWindow.doRedirect();
+			if (document.getElementById('redirect_test').contentWindow.doRedirect) {
+				document.getElementById('redirect_test').contentWindow.doRedirect();
+			} else {
+				result_display.text('FAIL');
+			}
 		},
 
 		// Redirect canceled by Rhymix.cancelPendingRedirect()

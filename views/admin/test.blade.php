@@ -93,5 +93,5 @@
 <iframe id="redirect_test" src="@url([
 	'module' => 'admin',
 	'act' => 'dispAjaxtestRedirectSource',
-	'layout' => 'none',
+	'nonce' => strval(microtime(true)),
 ])" style="display:none"></iframe>

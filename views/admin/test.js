@@ -130,13 +130,13 @@ $(function() {
 	};
 
 	let delay = 300;
-	for (let name in tests) {
+	$.each(tests, function(key, val) {
 		setTimeout(function() {
-			const result_display = $('.' + name);
-			tests[name](result_display);
+			let result_display = $('.' + key);
+			val(result_display);
 		}, delay);
 		delay += 300;
-	}
+	});
 
 });
 

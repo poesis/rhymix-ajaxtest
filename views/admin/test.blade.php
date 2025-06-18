@@ -7,12 +7,20 @@
 
 <table class="test">
 	<tr>
-		<th>Successful request with callback function</th>
+		<th>Successful request to module.action with callback function</th>
 		<td class="success_callback"></td>
 	</tr>
 	<tr>
-		<th>Successful request with promise</th>
+		<th>Successful request to module.action with promise</th>
 		<td class="success_promise"></td>
+	</tr>
+	<tr>
+		<th>Successful request to raw URL with callback function</th>
+		<td class="url_callback"></td>
+	</tr>
+	<tr>
+		<th>Successful request to raw URL with promise</th>
+		<td class="url_promise"></td>
 	</tr>
 	<tr>
 		<th>Error with callback function (HTTP 200)</th>
@@ -29,6 +37,14 @@
 	<tr>
 		<th>Error with promise (HTTP 403)</th>
 		<td class="error_promise_403"></td>
+	</tr>
+	<tr>
+		<th>Network error with callback</th>
+		<td class="network_error_callback"></td>
+	</tr>
+	<tr>
+		<th>Network error with promise</th>
+		<td class="network_error_promise"></td>
 	</tr>
 	<tr>
 		<th>Form submission success</th>

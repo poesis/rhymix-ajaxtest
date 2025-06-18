@@ -4,7 +4,7 @@ $(function() {
 
 	const tests = {
 
-		// Normal AJAX request
+		// Successful AJAX request to module.action
 		success_callback: function(result_display) {
 			Rhymix.ajax('ajaxtest.procAjaxtestNormalResult', testdata, function(data) {
 				if (data.test_result === testdata.test) {
@@ -15,10 +15,34 @@ $(function() {
 			});
 		},
 
-		// Normal AJAX request using Promise
+		// Successful AJAX request to module.action using Promise
 		success_promise: function(result_display) {
 			Rhymix.ajax('ajaxtest.procAjaxtestNormalResult', testdata).then(function(data) {
 				if (data.test_result === testdata.test) {
+					result_display.text('PASS');
+				} else {
+					result_display.text('FAIL');
+				}
+			});
+		},
+
+		// Successful AJAX request to raw URL
+		url_callback: function(result_display) {
+			const testdata2 = { 'module': 'ajaxtest', 'act': 'procAjaxtestNormalResult', 'test': 'URL_AJAXTEST' };
+			Rhymix.ajax(Rhymix.getBaseUrl(), testdata2, function(data) {
+				if (data.test_result === testdata2.test) {
+					result_display.text('PASS');
+				} else {
+					result_display.text('FAIL');
+				}
+			});
+		},
+
+		// Successful AJAX request to raw URL using Promise
+		url_promise: function(result_display) {
+			const testdata3 = { 'module': 'ajaxtest', 'act': 'procAjaxtestNormalResult', 'test': 'URL_AJAXTEST' };
+			Rhymix.ajax(Rhymix.getBaseUrl(), testdata3).then(function(data) {
+				if (data.test_result === testdata3.test) {
 					result_display.text('PASS');
 				} else {
 					result_display.text('FAIL');
@@ -45,7 +69,7 @@ $(function() {
 			Rhymix.ajax('ajaxtest.procAjaxtestErrorResult', testdata).then(function(data) {
 				result_display.text('FAIL');
 			}).catch(function(err) {
-				if (err.cause.message === 'AJAXTEST_ERROR_MESSAGE') {
+				if (err.cause.message === 'AJAXTEST_ERROR_MESSAGE' && err._rx_ajax_error === true) {
 					result_display.text('PASS');
 				} else {
 					result_display.text('FAIL');
@@ -72,7 +96,34 @@ $(function() {
 			Rhymix.ajax('ajaxtest.procAjaxtestErrorCode403', testdata).then(function(data) {
 				result_display.text('FAIL');
 			}).catch(function(err) {
-				if (err.cause.message === 'AJAXTEST_ERROR_MESSAGE') {
+				if (err.cause.message === 'AJAXTEST_ERROR_MESSAGE' && err._rx_ajax_error === true) {
+					result_display.text('PASS');
+				} else {
+					result_display.text('FAIL');
+				}
+			});
+		},
+
+		// Network error (invalid URL) with callback
+		network_error_callback: function(result_display) {
+			Rhymix.ajax('http://invalid.invalid:43702/', testdata, function(data) {
+				result_display.text('FAIL');
+			}, function(data) {
+				if (data.error == 0) {
+					result_display.text('PASS');
+				} else {
+					result_display.text('FAIL');
+				}
+				return false;
+			});
+		},
+
+		// Network error (invalid URL) with promise
+		network_error_promise: function(result_display) {
+			Rhymix.ajax('http://invalid.invalid:43702/', testdata).then(function(data) {
+				result_display.text('FAIL');
+			}).catch(function(error) {
+				if (error.cause.error == 0 && error.details.indexOf('Connection failed') == 0) {
 					result_display.text('PASS');
 				} else {
 					result_display.text('FAIL');

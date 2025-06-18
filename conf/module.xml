@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<grants>
+	</grants>
+	<actions>
+		<!-- 관리자 액션 -->
+		<action name="dispAjaxtestAdminTest" class="Controllers\Admin" menu-name="ajaxtest" admin-index="true" />
+		<action name="procAjaxtestNormalResult" class="Controllers\Test" />
+		<action name="procAjaxtestErrorResult" class="Controllers\Test" />
+		<action name="procAjaxtestErrorCode403" class="Controllers\Test" />
+		<action name="procAjaxtestFormSubmission" class="Controllers\Test" />
+		<action name="procAjaxtestRedirect" class="Controllers\Test" />
+		<action name="dispAjaxtestRedirectSource" class="Controllers\Test" />
+		<action name="dispAjaxtestRedirectTarget" class="Controllers\Test" />
+	</actions>
+	<menus>
+		<menu name="ajaxtest" type="all">
+			<title xml:lang="ko">AJAX 테스트</title>
+		</menu>
+	</menus>
+</module>

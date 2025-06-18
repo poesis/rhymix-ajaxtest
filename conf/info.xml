@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+	<title xml:lang="ko">AJAX 테스트</title>
+	<description xml:lang="ko">라이믹스 코어의 AJAX 기능을 테스트하기 위한 모듈입니다.</description>
+	<version>1.0.0</version>
+	<date>2025-06-18</date>
+	<category>service</category>
+	<author email_address="" link="https://www.poesis.dev">
+		<name xml:lang="ko">POESIS</name>
+	</author>
+</module>
